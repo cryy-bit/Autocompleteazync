@@ -24,12 +24,26 @@
             </property>
 
             <property key="dataMapping" type="attribute" dataSource="dataSource">
-                <caption>test</caption>
+                <caption>Item text</caption>
                 <description></description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
+
+            <property key="useAvatar" type="boolean" defaultValue="true">
+                <caption>useAvatar?</caption>
+                <description></description>
+            </property>
+
+            <property key="avatar" type="attribute" dataSource="dataSource">
+                <caption>Avatar img string</caption>
+                <description></description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+
 
             <property key="stringInput" type="attribute" required="true">
                 <caption>attribute to use for search</caption>
@@ -39,7 +53,7 @@
                 </attributeTypes>
             </property>
 
-            <property key="association" type="association" required="true" selectableObjects="dataSource" >
+            <property key="association" type="association" required="true" selectableObjects="dataSource">
                 <caption>Association</caption>
                 <description>Association to connect selected option</description>
                 <associationTypes>
