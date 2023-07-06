@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendix.autocompleteazync.Autocompleteazync" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
-        supportedPlatform="Web"
-        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="mendix.autocompleteazync.Autocompleteazync" pluginWidget="true"
+    needsEntityContext="true" offlineCapable="true"
+    supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Autocompleteazync</name>
     <description>My widget description</description>
-    <icon/>
+    <icon />
     <properties>
+
+        <propertyGroup caption="General">
+            <property key="label" type="string">
+                <caption>Label caption</caption>
+                <description></description>
+            </property>
+        </propertyGroup>
+
+
         <propertyGroup caption="DataSource">
             <property key="dataSource" type="datasource" isList="true" required="true">
                 <caption> datasource you want to use to return a list</caption>
                 <description></description>
             </property>
-            
+
             <property key="dataMapping" type="attribute" dataSource="dataSource">
                 <caption>test</caption>
                 <description></description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
-            
             </property>
 
             <property key="stringInput" type="attribute" required="true">
@@ -28,9 +37,21 @@
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
-            
             </property>
 
+            <property key="association" type="association" required="true" selectableObjects="dataSource" >
+                <caption>Association</caption>
+                <description>Association to connect selected option</description>
+                <associationTypes>
+                    <associationType name="Reference" />
+                </associationTypes>
+            </property>
+
+            <property key="onSelect" type="action">
+                <caption>On select microflow</caption>
+                <description>Microflow to trigger when a value is selected</description>
+            </property>
         </propertyGroup>
+
     </properties>
 </widget>
