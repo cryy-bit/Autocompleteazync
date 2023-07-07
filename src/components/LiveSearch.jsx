@@ -1,7 +1,7 @@
 import React, { createElement, useState, useRef, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import debounce from "lodash.debounce";
-import optionItems from "./populateOptionList";
+import populateOptionList from "./populateOptionList";
 import AutoComplete from "./AutoComplete";
 
 const LiveSearch = props => {
@@ -57,7 +57,7 @@ const LiveSearch = props => {
     };
 
     if (dataSource.status === propStatus.AVAILABLE) {
-        optionItems(dataSource, dataMapping, avatar, useAvatar, optionList);
+        populateOptionList(dataSource, dataMapping, avatar, useAvatar, optionList);
     }
 
     return (
