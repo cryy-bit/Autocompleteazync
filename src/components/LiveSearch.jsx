@@ -22,6 +22,11 @@ const LiveSearch = props => {
         LOADING: "loading"
     };
 
+    //useEffect is used here to trigger setLimit function in response to
+    //isOpen state changes. This is a side-effect that must be handled
+    //because we want to make sure the Widget does not retrieve data before
+    //it's actually needed!! This is very important on first-render
+
     useEffect(()=>{
         if (isOpen){
             dataSource.setLimit(undefined);
