@@ -11,16 +11,6 @@ const LiveSearch = props => {
     const loading = isOpen;
     const hasChanged = useRef(false);
 
-    useEffect(()=>{
-        if (isOpen){
-            dataSource.setLimit(undefined);
-        }
-        else{
-            dataSource.setLimit(0);
-        }
-    }, [isOpen])
-
-
     const reasonEnum = {
         SELECT: "selectOption",
         CLEAR: "clear",
@@ -31,6 +21,15 @@ const LiveSearch = props => {
         AVAILABLE: "available",
         LOADING: "loading"
     };
+
+    useEffect(()=>{
+        if (isOpen){
+            dataSource.setLimit(undefined);
+        }
+        else{
+            dataSource.setLimit(0);
+        }
+    }, [isOpen])
 
     const handleInputChange = debounce(value => {
         stringInput.setValue(value);
