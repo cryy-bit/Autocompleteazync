@@ -34,6 +34,8 @@ const LiveSearch = props => {
         }
     }, [isOpen]);
 
+    //Debounce by using cleanup useEffect function
+    //This will cause the reloadData to only happen after user stop typing :)
     useEffect(() => {
         const identifier = setTimeout(() => {
             console.warn("Load Data");
