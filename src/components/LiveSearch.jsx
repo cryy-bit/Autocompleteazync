@@ -11,6 +11,16 @@ const LiveSearch = props => {
     const loading = isOpen;
     const hasChanged = useRef(false);
 
+    useEffect(()=>{
+        if (isOpen){
+            dataSource.setLimit(undefined);
+        }
+        else{
+            dataSource.setLimit(0);
+        }
+    }, [isOpen])
+
+
     const reasonEnum = {
         SELECT: "selectOption",
         CLEAR: "clear",
@@ -51,6 +61,7 @@ const LiveSearch = props => {
 
         if (reason === reasonEnum.CLEAR || reason === reasonEnum.REMOVE) {
             hasChanged.current = true;
+            console.warn("clearing")
             stringInput.setValue("");
             reloadData(reason);
         }
@@ -63,6 +74,7 @@ const LiveSearch = props => {
     return (
         <Stack sx={{ width: 300 }}>
             <AutoComplete
+                dataSource={dataSource}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 loading={loading}

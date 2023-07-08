@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "/Volumes/[C] Windows 11/Mendix/Portfolio Management-Robert-POC-test",
+    "projectPath": "/Volumes/[C] Windows 11/Mendix/Portfolio Management-CEN-893-REVIEW",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },

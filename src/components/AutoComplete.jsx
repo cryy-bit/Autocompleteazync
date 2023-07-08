@@ -6,6 +6,8 @@ import TextField from "@mui/material/TextField";
 const AutoComplete = props => {
     console.warn(props.useAvatar);
     console.warn(props.optionList);
+    console.warn(props.dataSource);
+    console.warn(props.isOpen)
 
     return (
         <Autocomplete
@@ -30,7 +32,7 @@ const AutoComplete = props => {
             sx={{ width: 300 }}
             noOptionsText={"Not found"}
             renderOptions={(props, optionList) => (
-                <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 } }} {...props}>
+                <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, height:100 } } {...props}>
                         <img
                             loading="lazy"
                             tabIndex="0"
@@ -51,6 +53,7 @@ const AutoComplete = props => {
                     onChange={event => {
                         event.preventDefault();
                         props.handleInputChange(event.target.value);
+                        props.dataSource.setLimit(undefined);
                     }}
                     label={props.label}
                 >
