@@ -4,11 +4,8 @@ import { Box } from "@mui/system";
 import TextField from "@mui/material/TextField";
 
 const AutoComplete = props => {
-    console.warn(props.useAvatar);
-    console.warn(props.optionList);
-    console.warn(props.dataSource);
-    console.warn(props.isOpen)
 
+   
     return (
         <Autocomplete
             id="mxAutoComplete"
@@ -26,22 +23,22 @@ const AutoComplete = props => {
             autoHighlight
             loading={props.loading}
             loadingText={"Loading..."}
-            getOptionLabel={optionList =>  `${optionList.companyName}`}
+            getOptionLabel={optionList => `${optionList.companyName}`}
             isOptionEqualToValue={(optionList, value) => optionList.id === value.id}
             options={props.optionList}
             sx={{ width: 300 }}
-            noOptionsText={"Not found"}
+            noOptionsText={props.loading || props.optionList.length === 0? "Loading..." : "Not found" }
             renderOptions={(props, optionList) => (
-                <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, height:100 } } {...props}>
-                        <img
-                            loading="lazy"
-                            tabIndex="0"
-                            width="20"
-                            height="auto"
-                            src={`${optionList.avatar}`}
-                            srcSet={`${optionList.avatar}`}
-                            alt="com-img"
-                        ></img>
+                <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, height: 100 }} {...props}>
+                    <img
+                        loading="lazy"
+                        tabIndex="0"
+                        width="20"
+                        height="auto"
+                        src={`${optionList.avatar}`}
+                        srcSet={`${optionList.avatar}`}
+                        alt="com-img"
+                    ></img>
 
                     {optionList.companyName}
                 </Box>
@@ -53,7 +50,6 @@ const AutoComplete = props => {
                     onChange={event => {
                         event.preventDefault();
                         props.handleInputChange(event.target.value);
-                        props.dataSource.setLimit(undefined);
                     }}
                     label={props.label}
                 >

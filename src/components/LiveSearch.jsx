@@ -1,6 +1,5 @@
 import React, { createElement, useState, useRef, useEffect } from "react";
 import Stack from "@mui/material/Stack";
-import debounce from "lodash.debounce";
 import populateOptionList from "./populateOptionList";
 import AutoComplete from "./AutoComplete";
 
@@ -8,7 +7,7 @@ const LiveSearch = props => {
     let optionList = [];
     const { dataSource, stringInput, useAvatar, avatar, dataMapping, label, association, onSelect } = props;
     const [isOpen, setIsOpen] = useState(false);
-    const loading = isOpen;
+    const [loading, setLoading] = useState(true);
     const hasChanged = useRef(false);
 
     const reasonEnum = {
@@ -27,20 +26,36 @@ const LiveSearch = props => {
     //because we want to make sure the Widget does not retrieve data before
     //it's actually needed!! This is very important on first-render
 
-    useEffect(()=>{
-        if (isOpen){
+    useEffect(() => {
+        if (isOpen) {
             dataSource.setLimit(undefined);
-        }
-        else{
+        } else {
             dataSource.setLimit(0);
         }
-    }, [isOpen])
+    }, [isOpen]);
 
-    const handleInputChange = debounce(value => {
+
+    //There is a behaviour where noOptionText will show briefly before data is loaded
+    //Most likely due to how dataSource.reload() most likely functions asynchronously
+    //That's why the autocomplete thinks that there is no items. Still have to figure this outs
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            console.warn("Load Data");
+            reloadData();
+            setLoading(false);
+        }, 300);
+
+        return () => {
+            console.warn("Clean up!");
+            clearTimeout(identifier);
+        };
+    }, [stringInput.value]);
+
+    const handleInputChange = value => {
         stringInput.setValue(value);
         hasChanged.current = true;
-        reloadData();
-    }, 200);
+        setLoading(true);
+    };
 
     const reloadData = reason => {
         if (
@@ -65,7 +80,7 @@ const LiveSearch = props => {
 
         if (reason === reasonEnum.CLEAR || reason === reasonEnum.REMOVE) {
             hasChanged.current = true;
-            console.warn("clearing")
+            console.warn("clearing");
             stringInput.setValue("");
             reloadData(reason);
         }
