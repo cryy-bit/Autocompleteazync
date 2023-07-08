@@ -53,6 +53,10 @@ const LiveSearch = props => {
         hasChanged.current = true;
     };
 
+
+    //We want to reload data based on 2 scenarios:
+    // 1. If the widget is opened
+    // 2. if the selected data is cleared
     const reloadData = reason => {
         if (
             (dataSource.status === propStatus.AVAILABLE && isOpen && hasChanged.current) ||
@@ -65,6 +69,11 @@ const LiveSearch = props => {
         }
     };
 
+    //We used the handleOnSelect here to execute action depending
+    //on what the action is. If it is selected, we then set the association
+    //to the object we selected and trigger an onSelect microflow. If clear we 
+    //handle cleaning the frontend by cleaning the value of input box and reload
+    //data to achieve initial state.
     const handleOnSelect = (value, reason) => {
         if (reason === reasonEnum.SELECT) {
             console.warn(value);
