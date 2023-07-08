@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 
 const AutoComplete = props => {
 
+    console.warn(props.loading);
+
    
     return (
         <Autocomplete
@@ -21,13 +23,14 @@ const AutoComplete = props => {
                 props.handleOnSelect(value, reason);
             }}
             autoHighlight
+            filterOptions={(x)=>x}
             loading={props.loading}
             loadingText={"Loading..."}
             getOptionLabel={optionList => `${optionList.companyName}`}
             isOptionEqualToValue={(optionList, value) => optionList.id === value.id}
             options={props.optionList}
             sx={{ width: 300 }}
-            noOptionsText={props.loading || props.optionList.length === 0? "Loading..." : "Not found" }
+            noOptionsText={"Not found" }
             renderOptions={(props, optionList) => (
                 <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, height: 100 }} {...props}>
                     <img

@@ -4,11 +4,10 @@ import populateOptionList from "./populateOptionList";
 import AutoComplete from "./AutoComplete";
 
 const LiveSearch = props => {
-    let optionList = [];
-    const { dataSource, stringInput, useAvatar, avatar, dataMapping, label, association, onSelect } = props;
-    const [isOpen, setIsOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const hasChanged = useRef(false);
+    const propStatus = {
+        AVAILABLE: "available",
+        LOADING: "loading"
+    };
 
     const reasonEnum = {
         SELECT: "selectOption",
@@ -16,10 +15,11 @@ const LiveSearch = props => {
         REMOVE: "removeOption"
     };
 
-    const propStatus = {
-        AVAILABLE: "available",
-        LOADING: "loading"
-    };
+    let optionList = [];
+    const { dataSource, stringInput, useAvatar, avatar, dataMapping, label, association, onSelect } = props;
+    const [isOpen, setIsOpen] = useState(false);
+    const loading = dataSource.status === propStatus.LOADING;
+    const hasChanged = useRef(false);
 
     //useEffect is used here to trigger setLimit function in response to
     //isOpen state changes. This is a side-effect that must be handled
@@ -34,15 +34,10 @@ const LiveSearch = props => {
         }
     }, [isOpen]);
 
-
-    //There is a behaviour where noOptionText will show briefly before data is loaded
-    //Most likely due to how dataSource.reload() most likely functions asynchronously
-    //That's why the autocomplete thinks that there is no items. Still have to figure this outs
     useEffect(() => {
         const identifier = setTimeout(() => {
             console.warn("Load Data");
             reloadData();
-            setLoading(false);
         }, 300);
 
         return () => {
@@ -54,7 +49,6 @@ const LiveSearch = props => {
     const handleInputChange = value => {
         stringInput.setValue(value);
         hasChanged.current = true;
-        setLoading(true);
     };
 
     const reloadData = reason => {
