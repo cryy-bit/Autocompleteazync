@@ -36,6 +36,8 @@ const LiveSearch = props => {
 
     //Debounce by using cleanup useEffect function
     //This will cause the reloadData to only happen after user stop typing :)
+    //This works because the anonymous function defined in the useEffect ALWAYS trigger
+    //before the rest of the useEffect code!!!
     useEffect(() => {
         const identifier = setTimeout(() => {
             console.warn("Load Data");
