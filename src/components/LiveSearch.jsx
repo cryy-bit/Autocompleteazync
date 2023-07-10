@@ -25,6 +25,7 @@ const LiveSearch = props => {
     //isOpen state changes. This is a side-effect that must be handled
     //because we want to make sure the Widget does not retrieve data before
     //it's actually needed!! This is very important on first-render
+    //still need to check if dependency for isOpen is needed or "[]" is okay
 
     useEffect(() => {
         if (isOpen) {
