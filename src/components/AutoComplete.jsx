@@ -20,7 +20,7 @@ const AutoComplete = props => {
             }}
             onChange={(event, value, reason) => {
                 event.preventDefault();
-                props.handleOnSelect(value, reason);
+                props.handleAutoCompleteChange(value, reason);
             }}
             autoHighlight
             filterOptions={(x)=>x}

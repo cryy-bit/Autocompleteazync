@@ -71,12 +71,12 @@ const LiveSearch = props => {
         }
     };
 
-    //We used the handleOnSelect here to execute action depending
+    //We used the handleAutoCompleteChange here to execute action depending
     //on what the action is. If it is selected, we then set the association
     //to the object we selected and trigger an onSelect microflow. If clear we 
     //handle cleaning the frontend by cleaning the value of input box and reload
     //data to achieve initial state.
-    const handleOnSelect = (value, reason) => {
+    const handleAutoCompleteChange = (value, reason) => {
         if (reason === reasonEnum.SELECT) {
             console.warn(value);
             association.setValue(dataSource.items.find(item => item.id === value.id));
@@ -104,7 +104,7 @@ const LiveSearch = props => {
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 loading={loading}
-                handleOnSelect={handleOnSelect}
+                handleAutoCompleteChange={handleAutoCompleteChange}
                 handleInputChange={handleInputChange}
                 optionList={optionList}
                 stringInput={stringInput}
