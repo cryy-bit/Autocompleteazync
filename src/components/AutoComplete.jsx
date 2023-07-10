@@ -4,10 +4,8 @@ import { Box } from "@mui/system";
 import TextField from "@mui/material/TextField";
 
 const AutoComplete = props => {
-
     console.warn(props.loading);
 
-   
     return (
         <Autocomplete
             id="mxAutoComplete"
@@ -23,24 +21,25 @@ const AutoComplete = props => {
                 props.handleAutoCompleteChange(value, reason);
             }}
             autoHighlight
-            filterOptions={(x)=>x}
+            filterOptions={x => x}
             loading={props.loading}
             loadingText={"Loading..."}
             getOptionLabel={optionList => `${optionList.companyName}`}
             isOptionEqualToValue={(optionList, value) => optionList.id === value.id}
             options={props.optionList}
-            sx={{ width: 300 }}
-            noOptionsText={"Not found" }
-            renderOptions={(props, optionList) => (
-                <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, height: 100 }} {...props}>
+            sx={{ width: 1 }}
+            noOptionsText={"Not found"}
+            renderOption={(props, optionList) => (
+                <Box component="li" sx={{ fontSize: "14px" }} {...props}>
                     <img
                         loading="lazy"
                         tabIndex="0"
-                        width="20"
-                        height="auto"
+                        width="24"
+                        height="24"
                         src={`${optionList.avatar}`}
                         srcSet={`${optionList.avatar}`}
                         alt="com-img"
+                        style={{ borderRadius: "2px", marginRight: "5px" }}
                     ></img>
 
                     {optionList.companyName}
@@ -49,6 +48,7 @@ const AutoComplete = props => {
             renderInput={params => (
                 <TextField
                     {...params}
+                    size="small"
                     value={props.stringInput.value}
                     onChange={event => {
                         event.preventDefault();

@@ -24,8 +24,7 @@ const LiveSearch = props => {
     //useEffect is used here to trigger setLimit function in response to
     //isOpen state changes. This is a side-effect that must be handled
     //because we want to make sure the Widget does not retrieve data before
-    //it's actually needed!! This is very important on first-render
-    //still need to check if dependency for isOpen is needed or "[]" is okay
+    //it's actually needed!! This is very important on re-renders
 
     useEffect(() => {
         if (isOpen) {
@@ -56,7 +55,6 @@ const LiveSearch = props => {
         hasChanged.current = true;
     };
 
-
     //We want to reload data based on 2 scenarios:
     // 1. If the widget is opened
     // 2. if the selected data is cleared
@@ -74,7 +72,7 @@ const LiveSearch = props => {
 
     //We used the handleAutoCompleteChange here to execute action depending
     //on what the action is. If it is selected, we then set the association
-    //to the object we selected and trigger an onSelect microflow. If clear we 
+    //to the object we selected and trigger an onSelect microflow. If clear we
     //handle cleaning the frontend by cleaning the value of input box and reload
     //data to achieve initial state.
     const handleAutoCompleteChange = (value, reason) => {
@@ -99,7 +97,7 @@ const LiveSearch = props => {
     }
 
     return (
-        <Stack sx={{ width: 300 }}>
+        <Stack>
             <AutoComplete
                 dataSource={dataSource}
                 isOpen={isOpen}
