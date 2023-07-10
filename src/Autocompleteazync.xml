@@ -19,26 +19,26 @@
 
         <propertyGroup caption="DataSource">
             <property key="dataSource" type="datasource" isList="true" required="true">
-                <caption> datasource you want to use to return a list</caption>
-                <description></description>
+                <caption> datasource </caption>
+                <description>If used with microflow/nanoflow you need to return a list of data</description>
             </property>
 
             <property key="dataMapping" type="attribute" dataSource="dataSource">
-                <caption>Item text</caption>
-                <description></description>
+                <caption>Label text</caption>
+                <description>The attribute from datasource list which stores the label</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
 
             <property key="useAvatar" type="boolean" defaultValue="true">
-                <caption>useAvatar?</caption>
-                <description></description>
+                <caption>Use avatar</caption>
+                <description>Select yes if you want to use img on dropdown list</description>
             </property>
 
             <property key="avatar" type="attribute" dataSource="dataSource">
-                <caption>Avatar img string</caption>
-                <description></description>
+                <caption>Label Avatar</caption>
+                <description>The attribute from datasource which stores the imgurl you want to display</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
@@ -46,8 +46,8 @@
 
 
             <property key="stringInput" type="attribute" required="true">
-                <caption>attribute to use for search</caption>
-                <description></description>
+                <caption>Search text</caption>
+                <description>Attribute which stores the search string to be used to find data</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
@@ -55,7 +55,7 @@
 
             <property key="association" type="association" required="true" selectableObjects="dataSource">
                 <caption>Association</caption>
-                <description>Association to connect selected option</description>
+                <description>Association to connect to objects you want to select</description>
                 <associationTypes>
                     <associationType name="Reference" />
                 </associationTypes>
