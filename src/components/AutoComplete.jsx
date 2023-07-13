@@ -4,8 +4,7 @@ import { Box } from "@mui/system";
 import TextField from "@mui/material/TextField";
 
 const AutoComplete = props => {
-    console.warn(props.loading);
-
+    console.warn(props.useAvatar);
     return (
         <Autocomplete
             id="mxAutoComplete"
@@ -29,19 +28,20 @@ const AutoComplete = props => {
             options={props.optionList}
             sx={{ width: 1 }}
             noOptionsText={"Not found"}
-            renderOption={(props, optionList) => (
-                <Box component="li" sx={{ fontSize: "14px" }} {...props}>
-                    <img
-                        loading="lazy"
-                        tabIndex="0"
-                        width="24"
-                        height="24"
-                        src={`${optionList.avatar}`}
-                        srcSet={`${optionList.avatar}`}
-                        alt="com-img"
-                        style={{ borderRadius: "2px", marginRight: "5px" }}
-                    ></img>
-
+            renderOption={(optionProps, optionList) => (
+                <Box component="li" key={optionList.id} sx={{ fontSize: "14px" }} {...optionProps}>
+                    {props.useAvatar && (
+                        <img
+                            loading="lazy"
+                            tabIndex="0"
+                            width="24"
+                            height="24"
+                            src={`${optionList.avatar}`}
+                            srcSet={`${optionList.avatar}`}
+                            alt="com-img"
+                            style={{ borderRadius: "2px", marginRight: "5px" }}
+                        ></img>
+                    )}
                     {optionList.companyName}
                 </Box>
             )}

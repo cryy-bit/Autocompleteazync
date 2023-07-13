@@ -36,7 +36,7 @@
                 <description>Select yes if you want to use img on dropdown list</description>
             </property>
 
-            <property key="avatar" type="attribute" dataSource="dataSource">
+            <property key="avatar" type="attribute" dataSource="dataSource" required="false">
                 <caption>Label Avatar</caption>
                 <description>The attribute from datasource which stores the imgurl you want to display</description>
                 <attributeTypes>
