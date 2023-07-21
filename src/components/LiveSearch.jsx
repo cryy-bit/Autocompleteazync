@@ -55,6 +55,14 @@ const LiveSearch = props => {
         hasChanged.current = true;
     };
 
+    const onBlurHandler = () =>{
+        if (association.value === undefined){
+            reloadData(reasonEnum.CLEAR);
+            stringInput.setValue("");
+            console.warn('onBlur');
+        }
+    }
+
     //We want to reload data based on 2 scenarios:
     // 1. If the widget is opened
     // 2. if the selected data is cleared
@@ -99,6 +107,7 @@ const LiveSearch = props => {
     return (
         <Stack>
             <AutoComplete
+                onBlur = {onBlurHandler}
                 dataSource={dataSource}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}

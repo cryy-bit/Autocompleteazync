@@ -7,6 +7,7 @@ const AutoComplete = props => {
     console.warn(props.useAvatar);
     return (
         <Autocomplete
+            onBlur={props.onBlur}
             id="mxAutoComplete"
             open={props.isOpen}
             onOpen={() => {
